@@ -1,0 +1,33 @@
+$text: #000000;
+$primary-color: #ff6600;
+
+.bold-text {
+  font-weight: bold;
+}
+
+h1 {
+  text-align: center;
+  background-color: $primary-color;
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  color: $text;
+}
+
+.responsive-dialog {
+  width: 90%; 
+  max-width: 100px; 
+}
+
+@media (max-width: 768px) {
+  .responsive-dialog {
+    width: 90%; 
+    max-width: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .responsive-dialog {
+    width: 55%;
+    max-width: none;
+  }
+}
