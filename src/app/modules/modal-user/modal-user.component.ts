@@ -24,8 +24,9 @@ export class ModalUserComponent  {
   public saveNewUser() {
     this.svUser.createUser({ email: this.emailName }).subscribe({
       next: (data) => {
-        console.log("data modal", data);
+       
         this.svmodal.close(data);
+
       },
       error: (error) => {
         console.log("error modal", error);

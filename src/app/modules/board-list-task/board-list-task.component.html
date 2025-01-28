@@ -1,0 +1,25 @@
+
+    <cdk-virtual-scroll-viewport class="content" itemSize="5">
+      <mat-list class="list">
+  
+        <mat-list-item *cdkVirtualFor="let task of Tasks$ | async; trackBy: trackByTaskId" (click)="onTaskClick(task)">
+
+          <mat-checkbox matListItemIcon  [checked]="task.status === 1"   (change)="updateTask(task, $event.checked)"   (click)="$event.stopPropagation()"></mat-checkbox>
+          <div matListItemTitle class="custom-title">{{task.title}}</div>
+          <div matListItemLine>{{task.description}}</div>
+          <div matListItemLine>{{task.date_creation |  date:'short'}}</div>
+          <button mat-icon-button (click)="onTaskRemove(task); $event.stopPropagation()" matListItemMeta >
+            <mat-icon>
+              delete
+            </mat-icon>
+          </button>
+        </mat-list-item>
+       
+      </mat-list>
+    </cdk-virtual-scroll-viewport>
+
+
+
+  
+
+

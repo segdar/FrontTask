@@ -1,0 +1,29 @@
+
+.content {
+  display: flex;
+  height: 95%;
+  overflow: unset;
+
+  itemList {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 15px;
+    border-bottom: 1px solid #eee;
+  }
+
+
+
+ 
+}
+
+.custom-title {
+  font-size: 1.3em; 
+  font-weight: bold;
+}
+
+.list {
+  padding-left: 35px;
+  padding-right: 35px;
+}
+

@@ -9,5 +9,5 @@ export interface Task {
 
 export enum TaskStatus {
   Pendiente = 0,
-  EnProceso = 1,
+  Completada = 1,
 }

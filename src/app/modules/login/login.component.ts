@@ -9,6 +9,7 @@ import { ModalUserComponent } from '../modal-user/modal-user.component';
 import { UserService } from '../../services/user.service';
 import { Router } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
+import { openDialogUserService } from '../../services/openDialogUser.service';
 
 
 
@@ -19,7 +20,7 @@ import { Subject, takeUntil } from 'rxjs';
   standalone: true,
   imports: [CommonModule, MatButtonModule, ReactiveFormsModule,
     MatInputModule,
-    MatCardModule, ModalUserComponent, MatDialogModule],
+    MatCardModule],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
@@ -37,8 +38,7 @@ export class LoginComponent implements OnDestroy {
   private svForm = inject(FormBuilder);
   private svUser = inject(UserService);
   private svRouter = inject(Router);
-  private readonly modal = inject(MatDialog);
-  private isDialogOpen = false;
+  private svDialoguser = inject(openDialogUserService)
   private destroysuscribe = new Subject<void>();
   
 
@@ -47,44 +47,7 @@ export class LoginComponent implements OnDestroy {
   });
   
 
-
-  private openDialog() {
-
-    if (this.isDialogOpen) {
-      return;
-    }
-
-
-    const dialogRef = this.modal.open(ModalUserComponent, {
-      panelClass: 'responsive-dialog',
-      data: { email: this.loginForm.value.email }
-    });
-
-
-
-    dialogRef.afterClosed().subscribe({
-      next: (data) => {
-      
-        if (data.status && data.value) {
-
-          this.svRouter.navigate(['/home']);
-        }
-      },
-      error: (error) => {
-        console.error('There was an error!', error)
-      }
-    })
-    
-
-  
-
-  }
-
   onSubmit() {
-
-    /*if (this.isDialogOpen) {
-      return;
-    }*/
 
     if (this.loginForm.valid ) {
         const tmpUser = {
@@ -94,16 +57,16 @@ export class LoginComponent implements OnDestroy {
       this.svUser.getUsers(tmpUser).pipe(takeUntil(this.destroysuscribe)).subscribe({
         next: (data:any) => {
           if (data.status && data.value !== '') {
-            this.svRouter.navigate(['/home']);
+            localStorage.setItem('ie', data.value.id)
+            this.svRouter.navigate(['/welcome']);
+
           } else {
-            this.openDialog();
-            this.isDialogOpen = true;
+            this.svDialoguser.openDialog(tmpUser.email);
           }
           
         },
         error: (error) => {
-          
-          this.isDialogOpen = false;;
+     
           console.error('There was an error!', error)
         }
 
@@ -115,9 +78,9 @@ export class LoginComponent implements OnDestroy {
 
   ngOnDestroy(): void {
     this.loginForm.reset();
-    this.modal.ngOnDestroy();
     this.destroysuscribe.next();
     this.destroysuscribe.complete();
+
   }
 
 
