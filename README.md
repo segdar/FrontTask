@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # ATOM FE CHALLENGE TEMPLATE - ANGULAR
 
 Este proyecto es una plantilla con lo necesario para comenzar a desarrollar el front-end de la aplicación de la prueba técnica de Atom. Se base en Angular con la versión 15.2.1.
@@ -34,3 +35,6 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+=======
+# FrontTask
+>>>>>>> 6e935e8264e7826d8b01e0aa1799141655eb32c3
