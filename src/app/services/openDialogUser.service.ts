@@ -28,10 +28,12 @@ export class openDialogUserService {
    
     dialogRef.afterClosed().subscribe({
       next: (data) => {
-     
-        if (data.status && data.value ) {
-          this.svRouter.navigate(['/home']);
+       
+        if (data.status && data.value) {
+          this.svRouter.navigate(['/welcome']);
           localStorage.setItem('ie', data.value)
+          this.isDialogOpen = false;
+        } else {
           this.isDialogOpen = false;
         }
       },

@@ -19,7 +19,9 @@ export class ModalUserComponent  {
   private svUser = inject(UserService);
   public svmodal = inject(MatDialogRef<ModalUserComponent>);
 
-
+  public Stopnew() {
+    this
+  }
 
   public saveNewUser() {
     this.svUser.createUser({ email: this.emailName }).subscribe({
